@@ -25,8 +25,8 @@ services:
       - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
       ### middleware redirect
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      ### please generate your own password first
-      - "traefik.http.middlewares.auth-traefik.basicauth.users=user:$$apsdsdfefsL$$oBR6oU73m0j6GqHCGMrNB."
+      ### CREDENTIALS ARE user/password
+      - "traefik.http.middlewares.auth-traefik.basicauth.users=user:$$apr1$2KiFO8It$uqeQY7nYaq4lG2AaFWmHt1"
     networks:
       - proxy_network
 ############# VOLUMES ###############
