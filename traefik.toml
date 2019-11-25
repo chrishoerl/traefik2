@@ -1,0 +1,53 @@
+########## GLOBAL ##########
+[global]
+  checkNewVersion = true
+  sendAnonymousUsage = false
+
+[serversTransport]
+  insecureSkipVerify = true
+  maxIdleConnsPerHost = 42
+
+########## ENTRYPOINTS ##########
+[entryPoints]
+  [entryPoints.web]
+  address = ":80"
+
+  [entryPoints.websecure]
+  address = ":443"
+
+########## TLS ##########
+[certificatesResolvers.myhttpchallenge.acme]
+  email = "ssl@example.com"
+  storage = "/etc/traefik/acme/acme.json"
+  ### Stage Environment
+  ### uncomment for testing
+  ### if deactivated, default is prod environment
+  #caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  [certificatesResolvers.myhttpchallenge.acme.httpChallenge]
+    # LEncrypt Challenges go to http port 80
+    entryPoint = "web"
+
+########## PROVIDERS ##########
+[providers]
+  providersThrottleDuration = 42
+
+[providers.docker]
+  endpoint = "unix:///var/run/docker.sock"
+  exposedbydefault = false
+  watch = true
+
+[providers.file]
+  filename = "./config/rules.toml"
+  watch = true
+
+########## DIVERSE ##########
+[api]
+  dashboard = true
+
+########## LOGGING ##########
+[log]
+  level = "DEBUG"
+
+[traefikLog]
+
+#[accessLog]
