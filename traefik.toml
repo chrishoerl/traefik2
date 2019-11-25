@@ -34,11 +34,6 @@
 [providers.docker]
   endpoint = "unix:///var/run/docker.sock"
   exposedbydefault = false
-  watch = true
-
-[providers.file]
-  filename = "./config/rules.toml"
-  watch = true
 
 ########## DIVERSE ##########
 [api]
